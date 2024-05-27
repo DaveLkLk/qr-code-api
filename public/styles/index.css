@@ -1,0 +1,8 @@
+#qrImage{
+    /* max-width: 800px; */
+    aspect-ratio: 20/12;
+    object-fit: contain;
+    width: 100%;
+
+    border: 1px solid red;
+}
