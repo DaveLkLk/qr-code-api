@@ -10,7 +10,7 @@ export const generateQR = async (req, res) => {
         let qrCode;
         if (format === 'svg') {
             qrCode = await QRCode.toString(text, { type: 'svg' });
-            res-type('image/svg+xml')
+            res.type('image/svg+xml')
             res.send(qrCode)
         } else {
             qrCode = await QRCode.toDataURL(text);
