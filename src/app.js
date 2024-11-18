@@ -9,10 +9,10 @@ const __dirname = path.dirname(__filename);
 const app = express()
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')))
-app.use('/api', routes);
+app.use('/', routes);
 
-app.use((req,res,next) => {
-res.status(404).send('Not Found');
+app.use((req,res) => {
+res.status(404).send('Página no encontrada');
 });
 app.use((err,req,res,next)=> {
     console.error(err.stack);

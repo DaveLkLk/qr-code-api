@@ -4,29 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Generator API</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
-    <h1>QR Code Generator</h1>
-    <form id="qrForm">
-        <label for="text">Text:</label>
-        <input type="text" id="text" name="text" required>
-        <br>
-        <label for="expiry">Expiry Date (optional):</label>
-        <input type="datetime-local" id="expiry" name="expiry">
-        <br>
-        <label for="format">Format:</label>
-        <select id="format" name="format">
-            <option value="png">PNG</option>
-            <option value="svg">SVG</option>
-        </select>
-        <br>
-        <button type="submit">Generate QR Code</button>
-    </form>
-    <div id="qrContainer">
-        <img id="qrImage" src="./assets/qrcode.png" alt="QR Code">
-        <br>
-        <a id="downloadBtn" style="display:none;">Download QR Code</a>
+    <div id="root">
+        <nav class="navigation">
+            <div class="navigation_header nh">
+                <picture class="nh_logo">
+                    <img src="./assets/escudo-untels.png" alt="escudo untels" width="50px" height="50px">
+                </picture>
+                <div class="nh_title">
+                    <span>UNTELS</span>
+                    <span>Generador QR</span>
+                </div>
+            </div>
+            <div class="navigation_container nc">
+                <div class="nc_list">
+                    <ul class="nc_list-items">
+                        <li class="nc_list-item">
+                            <a href="/dashboard">
+                                <span class="icon"></span>
+                                <span class="label">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nc_list-item">
+                            <a href="/codigo-qr">
+                                <span class="icon"></span>
+                                <span class="label">Mis Códigos QR</span>
+                            </a>
+                        </li>
+                        <li class="nc_list-item">
+                            <a href="/crear-qr">
+                                <span class="icon"></span>
+                                <span class="label">Crear Código QR</span>
+                            </a>
+                        </li>
+                        <li class="nc_list-item">
+                            <a href="/analiticas">
+                                <span class="icon"></span>
+                                <span class="label">Analíticas</span>
+                            </a>
+                        </li>
+                        <li class="nc_list-item">
+                            <a href="/mi-cuenta">
+                                <span class="icon"></span>
+                                <span class="label">Mi Cuenta</span>
+                            </a>
+                        </li>
+                        <li class="nc_list-item">
+                            <a href="/usuarios">
+                                <span class="icon"></span>
+                                <span class="label">Usuarios</span>
+                            </a>
+                        </li>
+                        <li class="nc_list-item">
+                            <a href="/administracion">
+                                <span class="icon"></span>
+                                <span class="label">Administración</span>
+                            </a>
+                        </li>
+                        <li class="nc_list-item">
+                            <a href="/faq">
+                                <span class="icon"></span>
+                                <span class="label">Preguntas & Respuestas</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <h1>QR Code Generator</h1>
+            <form id="qrForm">
+                <label for="text">Text:</label>
+                <input type="text" id="text" name="text" required>
+                <br>
+                <label for="expiry">Expiry Date (optional):</label>
+                <input type="datetime-local" id="expiry" name="expiry">
+                <br>
+                <label for="format">Format:</label>
+                <select id="format" name="format">
+                    <option value="png">PNG</option>
+                    <option value="svg">SVG</option>
+                </select>
+                <br>
+                <button type="submit">Generate QR Code</button>
+            </form>
+            <div id="qrContainer">
+                <img id="qrImage" src="./assets/qrcode.png" alt="QR Code">
+                <br>
+                <a id="downloadBtn" style="display:none;">Download QR Code</a>
+            </div>
+        </div>
     </div>
 
     <script src="js/index.js"></script>

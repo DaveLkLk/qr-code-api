@@ -1,9 +1,38 @@
+@import url('./libs/reset.css');
+
 #qrImage{
-    /* max-width: 800px; */
     aspect-ratio: 20/12;
     object-fit: contain;
+    object-position: left top;
     width: 100%;
+    max-width: 800px;
+    max-height: 450px;
+}
+
+
+#root{
+    display: flex;
+    gap: .5rem;
+    padding: 1rem;
+}
+
+.navigation{
+    flex-basis: auto;
+    padding: 0 .5rem;
 
     border: 1px solid red;
 }
+    .nh{
+        display: flex;
+        gap: .3rem;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+.container{
+    flex-basis: 100%;
+    padding: 0 .5rem;
+    border: 1px solid blue;
+}
+
 
