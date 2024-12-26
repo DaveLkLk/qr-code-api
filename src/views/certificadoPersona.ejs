@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./assets/logo.png" sizes="40x40" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/certificado.css">
+    <title><%= title%></title>
+</head>
+<body>
+    <div class="container container_certificado">
+        <div class="certificado_title">
+            <div class="certificado_title-logo">
+                <picture>
+                    <img src="./assets/escudo-untels.png" alt="logo-untels" style="width:100px;height: 100px;">
+                </picture>
+            </div>
+        </div>
+        <div class="certificado_entidad">
+            <div class="certificado_entidad-nombre">
+                <span>Universidad Nacional Tecnológica de Lima Sur</span>
+            </div>
+            <div class="certificado_entidad-descripcion">
+                <span>Validación de Certificados Digitales - Evento Universitario</span>
+            </div>
+            <div class="certificado_entidad-evento">
+                <span>Seminario Internacional de Tecnología 2024</span>
+            </div>
+            <div class="certificado_entidad-lugar-fecha">
+                <div class="certificado_fecha">
+                    <span class="icon"></span>
+                    <span>14/03/2024</span>
+                </div>
+                <div class="certificado_lugar">
+                    <span class="icon"></span>
+                    <span>Auditorio Principal</span>
+                </div>
+            </div>
+            <div class="certificado_entidad-escuela">
+                <span>Organizado por: </span><span>Escuela de Administración de Empresas</span>
+            </div>
+        </div>
+        <div class="certificado_usuario">
+            <div class="certificado_usuario-prev">
+                <span>Certificado otorgado a</span>
+            </div>
+            <div class="certificado_usuario-nombre">
+                <span>Nombre de usuario</span>
+            </div>
+        </div>
+        <div class="certificado_info">
+            <div class="certificado_info-descripcion">
+                <span>Información de Certificado</span>
+            </div>
+            <ul class="certificado_info-lista">
+                <li>
+                    <span>ID del Certificado: </span>
+                    <span>ejemplo-123</span>
+                </li>
+                <li>
+                    <span>Fecha de Emisión: </span>
+                    <span>19/03/2024</span>
+                </li>
+                <li>
+                    <span>Firmado por: </span>
+                    <span>Dr. María Rodríguez, Decana de la Escuela de Administración de Empresas</span>
+                </li>
+            </ul>
+        </div>
+        <div class="certificado_obs">
+            <div class="certificado_obs-nombre">
+                <span>Observaciones</span>
+            </div>
+            <div class="certificado_obs-descripcion">
+                <span>El participante presentó una ponencia sobre Inteligencia Artificial aplicada a la educación superior.</span>
+            </div>
+        </div>
+        <div class="certificado_digital">
+            <div class="certificado_digital-pdf">
+                <embed id="certificado-usuario-pdf" src="<%= pdfPath%>" type="<%= type%>" width="100%" height="300px">
+            </div>
+            <div class="certificado_download">
+                <a href="<%= pdfPath%>" download="<%= name%>">Descargar Certificado</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

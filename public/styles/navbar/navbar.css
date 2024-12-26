@@ -1,0 +1,54 @@
+.navigation_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+    border: 1px solid grey;
+}
+    .nh_logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .nh_title{
+        width: max-content;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nh_title span{
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        text-wrap: nowrap;
+    }
+
+.navigation_container{
+    border: 1px solid grey;
+}
+.nc .nc_list-items{
+    display: grid;
+    
+}
+.nc .nc_list-item{
+    --icon-clr: var(--menu-li-clr);
+    background: var(--menu-li-bg);
+    padding: .7rem;
+    border-radius: 7px;
+    transition: all var(--menu-transition-type) var(--menu-transition-time);
+}
+.nc .nc_list-item:hover{
+    --icon-clr: var(--menu-li-clr-hover);
+    background: var(--menu-li-bg-hover);
+}
+.nc_list-link{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+.nc_list-link .label{
+    text-wrap: nowrap;
+    font-weight: 500;
+    color: var(--icon-clr);
+    transition: all var(--menu-transition-type) var(--menu-transition-time);
+}

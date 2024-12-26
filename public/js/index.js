@@ -24,5 +24,4 @@ document.getElementById('qrForm').addEventListener('submit', async function(even
     } catch (error) {
         console.log(error);
     }
-
 });

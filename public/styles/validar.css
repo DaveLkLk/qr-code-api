@@ -1,0 +1,100 @@
+@import url('./libs/reset.css');
+@import url('./libs/alert.css');
+@import url('./components/navbar.css');
+@import url('./components/footer.css');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root{
+    --btn-bg: #4169eb;
+    --btn-bg-hover: #2855e7;
+    --input-border-clr: #afafaf;
+    --input-border-clr-hover: #525252;
+}
+
+.container{
+    display: grid;
+    gap: 1rem;
+    height: 100%;
+    position: relative;
+}
+.container_validar{
+    width: 100%;
+    max-width: 27rem;
+    margin: auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 20px;
+    display: grid;
+    gap: 2rem;
+    box-shadow: 6px 6px 16px #7b7b7b,
+    -6px -6px 16px #ffffff;
+}
+.container_title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+.container_title .container_title-logo{
+    display: flex;
+    align-items: center;
+}
+.container_title-logo figure{
+    width: 60px;
+}
+.container_title-logo h2{
+    text-wrap: nowrap;
+    font-size: 1.6rem;
+    vertical-align: middle;
+}
+.container_title .container_title-help{
+    position: relative;
+    /* display: flex; */
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.container_title-help .btn_help{
+    --icon-size: 22px;
+    background: transparent;
+}
+.container_title .container_title-help .popup{
+    display: none;
+    transition: display ease 300ms allow-discrete;
+}
+
+.container_form form.form_validar{
+    display: grid;
+    gap: 1rem;
+}
+.form_validar .form_group{
+    display: grid;
+    gap: .2rem;
+}
+.form_validar .form_group .form_input{
+    padding: .5rem 1rem;
+    border: 1px solid var(--input-border-clr);
+    border-radius: 5px;
+    transition: all 300ms ease;
+}
+.form_validar .form_group .form_input:hover,
+.form_validar .form_group .form_input:focus{
+    border: 1px solid var(--input-border-clr-hover);
+}
+.form_validar .form_group .form_input:user-valid{
+    border: 1px solid var(--input-border-clr);
+}
+.form_validar .form_group .form_input:user-invalid{
+    border: 1px solid #dd4c4c;
+}
+
+.form_validar .btn_validar{
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    background: var(--btn-bg);
+    color: white;
+    transition: all 300ms ease;
+}
+.form_validar .btn_validar:hover{
+    background: var(--btn-bg-hover);
+}

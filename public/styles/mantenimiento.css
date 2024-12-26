@@ -1,0 +1,158 @@
+@import url('./libs/reset.css');
+
+html{
+    height: auto;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.wallpaper{
+    --w: 200;
+    position: fixed;
+    height: calc(var(--w) * 1vh);
+    width: calc(var(--w) * 1vw);
+    margin: auto;
+    inset: 0;
+    background-image:
+    url('../../assets/logo-header.webp');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position:center center;
+    opacity: .1;
+    animation: fondo 360s linear infinite;
+    z-index: -1;
+}
+:root{
+    --navbar-link-color: #5e5e5e;
+    --header-clr-link: #3863d8;
+    --header-clr-link-hover: #1853f7;
+}
+/* HEADER */
+.header_container{
+    display: flex;
+    gap: 1rem;
+    gap: 4rem;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+.header_layout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+}
+.header_info{
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+.header_info .header_text{
+    display: grid;
+    gap: 2rem;
+    width: 80%;
+    margin: auto;
+}
+.header_text h1{
+    font-size: 3rem;
+    text-wrap: pretty;
+    font-family: "Rubik";
+    font-optical-sizing: auto;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-wrap: pretty;
+}
+.header_text h2{
+    font-size: 2.2rem;
+    text-wrap: pretty;
+    font-family: "Rubik";
+    font-optical-sizing: auto;
+    font-weight: 700;
+    text-wrap: pretty;
+}
+.header_text h4{
+    font-size: .9rem;
+    text-wrap: pretty;
+    font-family: "Rubik";
+    font-optical-sizing: auto;
+    font-weight: 400;
+    text-wrap: pretty;
+}
+.header_text p{
+    font-size: 1.4rem;
+    font-family: "Rubik";
+    font-optical-sizing: auto;
+    font-weight: 400;
+    text-wrap: pretty;
+    color: var(--navbar-link-color);
+}
+.header_text .header_link{
+    width: max-content;
+    padding: 1rem 2rem;
+    color: white;
+    background-color: var(--header-clr-link);
+    border-radius: 10px;
+    box-shadow:
+    -3px -3px 5px #ffffff, 
+    0 3px 5px #292929;
+    transition: all ease 300ms;
+    &:hover{
+        background-color: var(--header-clr-link-hover);        
+    }
+}
+
+.header_logo{
+    position: relative;
+}
+.header_logo figure{
+    margin: auto;
+}
+.header_logo figure{
+    width: 350px;
+    opacity: .7;
+
+}
+
+@media screen and (max-width: 1400px) {
+    .header_container{
+        /* grid-template-columns: 4fr 2fr; */
+    }
+    .header_logo figure img{
+        object-fit: cover;
+        width: 100%;
+    }
+}
+/* @media screen and (max-width: 1150px) {
+    .header_container{
+        grid-template-columns: 1fr;
+    }
+    .header_logo figure{
+        position: absolute;
+        display: block;
+        right: 2rem;
+        z-index: 0;
+        opacity: .7;
+    }
+} */
+@media screen and (max-width: 950px) {
+    body{
+        height: auto;
+    }
+    .header_container{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes fondo {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}

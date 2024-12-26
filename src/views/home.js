@@ -1,4 +1,4 @@
-export function Page_Home(user){
+function Page_Home(user){
     const Navigation = {
         overview: {
             name: 'Dashboard',
@@ -33,4 +33,6 @@ export function Page_Home(user){
             data: []
         }
     }
+    return Navigation;
 }
+module.exports = {Page_Home}

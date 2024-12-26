@@ -1,38 +1,103 @@
 @import url('./libs/reset.css');
+@import url('./components/navbar.css');
 
-#qrImage{
-    aspect-ratio: 20/12;
-    object-fit: contain;
-    object-position: left top;
-    width: 100%;
-    max-width: 800px;
-    max-height: 450px;
+:root{
+    --navbar-link-color: #5e5e5e;
+    --header-clr-link: #3863d8;
+    --header-clr-link-hover: #1853f7;
 }
 
-
-#root{
+/* HEADER */
+.header_container{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 1rem;
+    height: 100%;
+}
+.header_layout{
     display: flex;
-    gap: .5rem;
-    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
 }
-
-.navigation{
-    flex-basis: auto;
-    padding: 0 .5rem;
-
-    border: 1px solid red;
+.header_info{
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
 }
-    .nh{
-        display: flex;
-        gap: .3rem;
-        align-items: center;
-        justify-content: flex-start;
+.header_info .header_text{
+    display: grid;
+    gap: 2rem;
+    width: 80%;
+    margin: auto;
+}
+.header_text h1{
+    font-size: 3rem;
+    text-wrap: pretty;
+    font-family: "Rubik";
+    font-optical-sizing: auto;
+    font-weight: 700;
+    text-wrap: pretty;
+}
+.header_text p{
+    font-size: 1.4rem;
+    font-family: "Rubik";
+    font-optical-sizing: auto;
+    font-weight: 400;
+    text-wrap: pretty;
+    color: var(--navbar-link-color);
+}
+.header_text .header_link{
+    width: max-content;
+    padding: 1rem 2rem;
+    color: white;
+    background-color: var(--header-clr-link);
+    border-radius: 10px;
+    box-shadow:
+    -3px -3px 5px #ffffff, 
+    0 3px 5px #292929;
+    transition: all ease 300ms;
+    &:hover{
+        background-color: var(--header-clr-link-hover);        
     }
-
-.container{
-    flex-basis: 100%;
-    padding: 0 .5rem;
-    border: 1px solid blue;
 }
 
+.header_logo{
+    position: relative;
+}
+.header_logo figure{
+    margin: auto;
+}
+
+@media screen and (max-width: 1400px) {
+    .header_container{
+        grid-template-columns: 4fr 2fr;
+    }
+    .header_logo figure img{
+        object-fit: cover;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1150px) {
+    .header_container{
+        grid-template-columns: 1fr;
+    }
+    .header_logo figure{
+        position: absolute;
+        display: block;
+        right: 2rem;
+        top: -20rem;
+        z-index: 0;
+        opacity: .7;
+    }
+}
+@media screen and (max-width: 950px) {
+    .header_container{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .header_logo{
+        display: none;
+    }
+}
 

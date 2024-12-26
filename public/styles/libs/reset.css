@@ -3,16 +3,39 @@
     border: 0;
     outline: none;
     padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
 }
 
 html{
     height: 100vh;
     scroll-behavior: smooth;
 }
-
 li{
     list-style: none;
 }
 a{
     text-decoration: none;
+}
+img{
+    max-width: 100%;
+}
+button[type="button"]{
+    cursor: pointer;
+}
+/*  */
+.icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon svg{
+    fill: var(--icon-clr);
+    width: var(--icon-size);
+    height: var(--icon-size);
+    transition: fill var(--menu-transition-type) var(--menu-transition-time);
+    pointer-events: none;
+    user-select: none;
+    transition: all ease 300ms;
 }
