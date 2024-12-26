@@ -154,7 +154,7 @@ async function ObtenerIdEstadoPersonaToExcel(isList, arr){
 async function CargarDataBD(_, res){
     try {
         const dataExcel = READ_EXCEL();
-        // return
+        return res.json(dataExcel)
         const pool = (await getConnection()).pool;
         // Iterar Filas
         const result = await Promise.all(dataExcel.map(async(i) => {

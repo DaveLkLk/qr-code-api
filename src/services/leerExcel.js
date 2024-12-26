@@ -1,6 +1,10 @@
 const XLSX = require('xlsx');
 const path = require('path');
 
+function fechaExcel(dateStr) {
+    const [month, day, year] = dateStr.split('/'); // Separar por "/"
+    return `${String(day).padStart(2, '0')}-${String(month).padStart(2, '0')}-20${year}`;
+}
 /**
  * Crea un archivo Excel con datos organizados por mes.
  * @param {string} fileName - Nombre del archivo Excel a crear.
@@ -10,7 +14,7 @@ const path = require('path');
  */
 function ObtenerDataExcel({filename, iniciarFila, hoja1, hoja2, hoja3, hoja4, hoja5}) { // LIMITE: 5 HOJAS
     // Ruta al archivo .xlsx
-    const filePath = path.join(__dirname, `../excel/${filename}.xlsx`);
+    const filePath = path.join(__dirname, `../excel/masivo/${filename}.xlsx`);
     // Leer el archivo
     const workbook = XLSX.readFile(filePath);
     // ESTABLECER LAS HOJAS QUE SERAN LEIDAS
@@ -27,13 +31,19 @@ function ObtenerDataExcel({filename, iniciarFila, hoja1, hoja2, hoja3, hoja4, ho
     // const CuartaHoja = Hoja4 ? workbook.Sheets[workbook.SheetNames[3]] : null; // cuarta hoja
     // const QuintaHoja = Hoja5 ? workbook.Sheets[workbook.SheetNames[4]] : null; // quinta hoja
     // Convertir los datos de la hoja a formato JSON
-    const options = { range: iniciarFila }; // Posicion de Fila
+    const options = { range: iniciarFila, raw: false }; // Posicion de Fila
     const data = {}
     if(PrimeraHoja) data.pageOne = XLSX.utils.sheet_to_json(PrimeraHoja, options);
     // if(SegundaHoja) data.organizador = XLSX.utils.sheet_to_json(SegundaHoja, options);
     // if(TerceraHoja) data.asistente = XLSX.utils.sheet_to_json(TerceraHoja, options);
     // if(CuartaHoja) data.colaborador = XLSX.utils.sheet_to_json(CuartaHoja, options);
     // if(QuintaHoja) data.extra = XLSX.utils.sheet_to_json(QuintaHoja, options);
+    // PARSEAR LA FECHA
+    data.pageOne.forEach(row => {
+        if(row.FECHA_EMISION){
+            row.FECHA_EMISION = fechaExcel(row.FECHA_EMISION);
+        }
+    })
     return {...data}
 }
 module.exports = {ObtenerDataExcel}

@@ -39,7 +39,7 @@ const generarPlantilla = async (_, res) => {
         if(fs.existsSync(filePath)){
             fs.unlinkSync(filePath);
             console.log('------------------------------------');
-            console.log(`Plantilla anterior eliminado: ${filePath}`);
+            console.log(`Plantilla anterior eliminada: ${filePath}`);
             console.log('------------------------------------');
         }
         XLSX.writeFile(libro, filePath);
