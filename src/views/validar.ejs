@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo.png" sizes="40x40" type="image/png">
+    <link rel="stylesheet" href="./styles/validar.css">
+    <link rel="stylesheet" href="./styles/certificado.css">
+    <title>UNTELS - Validación de Certificados</title>
+</head>
+<body>
+    <div class="wallpaper"></div>
+    <%- include('partials/navbar') %>
+    <div class="container_alert"></div>
+    <div class="container">
+        <div class="container_validar">
+            <div class="container_title">
+                <div class="container_title-logo">
+                    <figure>
+                        <img src="./assets/escudo-untels.png" alt="untels-logo">
+                    </figure>
+                    <h2>Validar Certificado</h2>
+                </div>
+                <div class="container_title-help">
+                    <button class="icon btn_help" title="Mostrar ayuda para rellenar los campos" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                          </svg>
+                    </button>
+                    <div class="popup">
+                        <div class="container_popup">
+                            <button type="button" class="icon btn_close" id="btn-popup-close" title="cerrar popup">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                </svg>
+                            </button>
+                            <figure>
+                                <img src="" alt="ayuda-validacion">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container_form">
+                <form class="form_validar" id="form-validacion-certificado">
+                    <div class="form_group">
+                        <label for="codigo-verificacion">Código de Verificación:</label>
+                        <input type="text" id="codigo-verificacion" class="form_input" minlength="4" maxlength="15" required>
+                    </div>
+                    <div class="form_group">
+                        <div class="container_captcha"></div>
+                    </div>
+                    <div class="form_group">
+                        <button class="btn_validar" id="btn-validar-certificado" type="submit">Validar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+    <script type="module" src="./js/validarCertificado.js"></script>
+</body>
+</html>

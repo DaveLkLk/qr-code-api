@@ -1,12 +1,16 @@
-import QRCode from 'qrcode'
+const { toDataURL} = require('qrcode')
 
-export const createQRCode = async (text)=> {
-    return await QRCode.toDataURL(text)
+const createQRCode = async (text)=> {
+    return await toDataURL(text)
 };
-export const createQRCodeWithLimit = async(text, limit)=> {
+const createQRCodeWithLimit = async(text, limit)=> {
     const data = {
         text,
         limit: limit.toISOString(),
     };
-    return await QRCode.toDataURL(JSON.stringify(data));
+    return await toDataURL(JSON.stringify(data));
+}
+module.exports = {
+    createQRCode,
+    createQRCodeWithLimit,
 }

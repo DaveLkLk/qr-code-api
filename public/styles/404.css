@@ -1,0 +1,204 @@
+@import url('./libs/reset.css');
+
+html{
+    height: auto;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+:root{
+    --gap: 2rem;
+    --bg-water: #ffffff;
+}
+.wallpaper{
+    --w: 200;
+    position: fixed;
+    height: calc(var(--w) * 1vh);
+    width: calc(var(--w) * 1vw);
+    margin: auto;
+    inset: 0;
+    background-image: url('../../assets/logo-header.webp');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position:center center;
+    opacity: .1;
+    animation: fondo 360s linear infinite;
+    z-index: -1;
+}
+.main_container {
+    margin: 2rem auto 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    gap: var(--gap);
+    height: max-content;
+    position: relative;
+}
+.not--found {
+    max-width: 1300px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 1rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center
+}
+
+.error_description {
+    display: flex;
+    flex-direction: column
+}
+
+.error_description * {
+    transition: color var(--tr-e-out)
+}
+
+.error_type {
+    color: var(--text-primary);
+    font-size: 3rem
+}
+
+.error_content h2 {
+    margin: 2rem 0 .5rem;
+    color: var(--text-secondary)
+}
+
+.error_content p {
+    color: var(--text-secondary);
+    line-height: 2rem;
+    text-wrap: pretty
+}
+
+.error_content p a {
+    color: var(--text-link);
+    font-weight: 400;
+    font-style: italic;
+    font-display: inherit
+}
+
+.error_actions {
+    margin-top: 3rem;
+    padding: 1rem 0;
+    display: flex;
+    gap: 5rem
+}
+
+.error_actions .error_btn {
+    --clr: white;
+    --bg: #3863d8;
+    --border: 1px solid #2361b3;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-wrap: nowrap;
+    font-weight: 600;
+    background: var(--bg);
+    color: var(--clr);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    transition: all ease 300ms;
+}
+
+.error_actions .error_btn:hover {
+    --bg: #216fd4;
+}
+
+.error_image {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.support {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    background: var(--bg-water);
+    overflow: hidden;
+    box-shadow: 20px 20px 60px #bebebe,
+    -20px -20px 60px #ffffff;
+    animation: animate 7s linear infinite backwards;
+    transition: width var(--tr-e-out),height var(--tr-e-out);
+    --icon-size: 250px;
+    --icon-clr: #cccccc;
+}
+
+
+
+@keyframes animate {
+    0%,to {
+        border-radius: 29% 100% 37% 79%/47% 82% 89% 70%;
+        background: #ffffff;
+    }
+
+    35% {
+        border-radius: 57% 83% 90% 45%/76% 71% 69% 33%;
+        background: #ffffff;
+    }
+
+    65% {
+        border-radius: 87% 43% 90% 45%/46% 61% 89% 83%;
+        background: #ffffff;
+    }
+}
+
+@media screen and (max-width: 1008px) {
+    .error_type {
+        font-size:2rem
+    }
+
+    .error_actions {
+        gap: 3rem
+    }
+
+    .support {
+        width: 300px;
+        height: 300px
+    }
+}
+
+@media screen and (max-width: 808px) {
+    body{
+        height: auto;
+    }
+    .not--found {
+        grid-template-columns:1fr
+    }
+
+    .error_actions {
+        gap: 2rem
+    }
+
+    .error_actions .error_btn {
+        padding: .5rem 1.5rem
+    }
+
+    .error_image {
+        margin-top: 2rem;
+        padding: 1rem 0
+    }
+
+    .support {
+        width: 250px;
+        height: 250px
+    }
+}
+@keyframes fondo {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}

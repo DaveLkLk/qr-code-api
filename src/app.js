@@ -1,21 +1,18 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import routes from './routes/index.js';
+const express = require('express');
+const path = require('path');
+const routes = require('./routes/index.js');
+const { PaginaNoEncontrada } = require('./routes/404Route.js');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express()
+const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, '../public')));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use('/', routes);
-
-app.use((req,res) => {
-res.status(404).send('Página no encontrada');
-});
+app.use((req,res) => PaginaNoEncontrada(req,res));
 app.use((err,req,res,next)=> {
-    console.error(err.stack);
-    res.status(500).send('Internal Server Error');
+    console.error(err.message);
+    res.status(500).render('404');
 })
-export default app;
+module.exports = app;

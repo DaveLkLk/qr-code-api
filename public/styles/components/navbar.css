@@ -1,0 +1,99 @@
+:root{
+    --navbar-clr-link: #3863d8;
+    --navbar-clr-link-hover: #1853f7;
+}
+body{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: inherit;
+    overflow: hidden;
+    background: linear-gradient(45deg, #02122449, #ffffffdc, #ffffffdc,  #ffffffdc, #076abb50);
+}
+.wallpaper{
+    --w: 250;
+    position: fixed;
+    height: calc(var(--w) * 1vh);
+    width: calc(var(--w) * 1vw);
+    margin: auto;
+    inset: 0;
+    background-image:
+    url('../../assets/logo-header.webp');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position:center center;
+    opacity: .1;
+    animation: fondo 120s linear infinite;
+    z-index: -1;
+}
+.navbar_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background: #ffffff42;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+/* titulo navegación */
+.navbar_title .navbar_btn_home{
+    display: flex;
+    padding: 1rem 2rem;
+    background: transparent;
+    gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    transition: all ease 300ms;
+}
+.navbar_title .navbar_btn_home:hover{
+    scale: 1.02;
+}
+.navbar_title .navbar_btn_home .navbar_icon{
+    --icon-size: 20px;
+    --icon-clr: var(--navbar-clr-link);
+}
+.navbar_title .navbar_btn_home .title{
+    font-size: 1.7rem;
+    font-weight: 500;
+    position: relative;
+    top: -2px;
+    color: var(--navbar-clr-link);
+}
+/* menu navegación */
+.navbar_lista .navbar_ul{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.navbar_lista .navbar_ul .navbar_link{
+    padding: 1rem 1.5rem;
+    color: var(--navbar-clr-link);
+    font-weight: bold;
+    position: relative;
+    transition: all ease 300ms;
+}
+.navbar_lista .navbar_ul .navbar_link:after{
+    content: '';
+    position: absolute;
+    bottom: 5px;left: 0;right: 0;margin: auto;
+    width: 0;
+    height: 2px;
+    background-color: var(--navbar-clr-link);
+    transition: all ease 300ms;
+}
+.navbar_lista .navbar_ul .navbar_link:hover{
+    color: var(--navbar-clr-link-hover);
+}
+.navbar_lista .navbar_ul .navbar_link:hover:after{
+    background: var(--navbar-clr-link-hover);
+    width: 100%;
+}
+
+@keyframes fondo {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}

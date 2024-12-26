@@ -1,0 +1,8 @@
+:root{
+    --menu-transition-type: ease;
+    --menu-transition-time: 300ms;
+    --menu-li-clr: #252525;
+    --menu-li-clr-hover: #3792d7;
+    --menu-li-bg: transparent;
+    --menu-li-bg-hover: #f0f7ff;
+}

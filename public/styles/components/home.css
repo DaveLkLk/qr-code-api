@@ -1,0 +1,37 @@
+#qrImage{
+    aspect-ratio: 20/12;
+    object-fit: contain;
+    object-position: left top;
+    width: 100%;
+    max-width: 800px;
+    max-height: 450px;
+}
+
+
+#root{
+    display: flex;
+    gap: .5rem;
+    padding: .5rem;
+}
+
+.navigation{
+    flex-basis: auto;
+    padding: 0 .5rem;
+    display: grid;
+    gap: 1rem;
+    align-items: flex-start;
+    align-content: flex-start;
+    height: 100vh;
+
+}
+    .nh{
+        display: flex;
+        gap: .3rem;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+.container{
+    flex-basis: 100%;
+    padding: 0 .5rem;
+}

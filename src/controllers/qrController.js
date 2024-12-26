@@ -1,6 +1,6 @@
-import QRCode from 'qrcode'
+const QRCode = require('qrcode')
 
-export const generateQR = async (req, res) => {
+const generateQR = async (req, res) => {
     try {
         const { text, format = 'svg' } = req.query;
         if (!text) {
@@ -23,7 +23,7 @@ export const generateQR = async (req, res) => {
     }
 };
 
-export const generateQRWithExpiry = async (req, res) => {
+const generateQRWithExpiry = async (req, res) => {
     try {
         const { text, expiry, format = 'svg' } = req.query;
         if (!text) {
@@ -57,3 +57,4 @@ export const generateQRWithExpiry = async (req, res) => {
         res.status(500).send('Error generating QR code');
     }
 };
+module.exports = { generateQR, generateQRWithExpiry}

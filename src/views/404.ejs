@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo.png" sizes="40x40" type="image/png">
+    <link rel="stylesheet" href="/styles/404.css">
+    <title>404 - Recurso no encontrado</title>
+</head>
+<body>
+    <div class="wallpaper"></div>
+    <div class="root">
+        <main class="main_container">
+            <div class="not--found">
+                <div class="error_description">
+                    <h1 class="error_type">404|Error </h1>
+                    <div class="error_content">
+                        <h2>El recurso que intenta buscar no existe o no está disponible</h2>
+                        <p>Lo sentimos, la página que estás buscando no está disponible. Es posible que la dirección haya cambiado, que la página haya sido eliminada o que haya habido un error temporal. Por favor, comprueba la URL y vuelve a intentarlo. Si crees que se trata de un error, por favor <a href="/">contacta con nosotros</a> para que podamos resolverlo. Gracias por tu comprensión.</p>
+                    </div>
+                    <div class="error_actions">
+                        <button class="error_btn error_btn-home" id="error-action-home">Volver</button>
+                    </div>
+                </div>
+                <div class="error_image">
+                    <div class="support icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            >
+                            <path d="M3 7v4a1 1 0 0 0 1 1h3" />
+                            <path d="M7 7v10" />
+                            <path d="M10 8v8a1 1 0 0 0 1 1h2a1 1 0 0 0 1 -1v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1z" />
+                            <path d="M17 7v4a1 1 0 0 0 1 1h3" />
+                            <path d="M21 7v10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const btnHome = document.getElementById('error-action-home');
+        btnHome.addEventListener('click', () => {
+            console.log('click');
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>
