@@ -19,7 +19,8 @@ function normalizarSTR(text) {
 }
 async function renamePDFTable(req = Request, res = Response) {
   try {
-    const labPath = path.join(__dirname, "../laboratorio");
+    const srcPath = path.join(__dirname, "../../src");
+    const labPath = path.join(srcPath, "laboratorio");
     const cerPath = path.join(__dirname, "../certificados");
     // CREAR CARPETAS SEGUN EL AÑO Y MES
     const currentDate = new Date();

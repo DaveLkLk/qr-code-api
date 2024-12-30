@@ -8,7 +8,7 @@ const router = Router()
 
 
 router.get('/qr/generate', generateQR)
-router.get('/qr/generate-with-limit', generateQRWithExpiry)
+// router.get('/qr/generate-with-limit', generateQRWithExpiry)
 // router.get('/xlsx/read', READ_EXCEL)
 router.get('/xlsx/read', async(req, res)=> CargarDataBD(req, res))
 router.get('/xlsx/generar', async(req, res)=> generarPlantilla(req, res))

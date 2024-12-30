@@ -13,11 +13,11 @@ router.get('/', (req, res)=>{
     // res.status(200).render('certificadoAlumno', page);
     // res.status(200).render('mantenimiento');
 });
-router.get('/mantenimiento', (req, res)=>{
-    console.log('/mantenimiento');
-    res.status(200).render('mantenimiento');
-    // res.status(200).render('certificadoAlumno', page);
-});
+// router.get('/mantenimiento', (req, res)=>{
+//     // console.log('/mantenimiento');
+//     res.status(200).render('mantenimiento');
+//     // res.status(200).render('certificadoAlumno', page);
+// });
 // router.get('/login', (req, res)=>{
 //     console.log(req.body);
 //     console.log('/login');
@@ -34,8 +34,8 @@ router.get('/mantenimiento', (req, res)=>{
 //     res.status(200).json(data);
 // });
 router.get('/validar', (req, res)=>{
-    console.log(req.body);
-    console.log('/validar');
+    // console.log(req.body);
+    // console.log('/validar');
     res.status(200).render('validar');
 });
 
