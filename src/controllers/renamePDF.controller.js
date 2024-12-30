@@ -104,7 +104,7 @@ async function renamePDFTable(req = Request, res = Response) {
         const newFilename = `${path_certificado}-${cargo}.pdf`;
         const oldFilepath = path.join(labPath, file);
         const newFilePath = path.join(monthPath, newFilename);
-        await rename(oldFilepath, newFilePath);
+        await rename(oldFilepath, newFilePath)
         console.log(`Archivo movido a: ${newFilePath}`);
         }
         console.log("Proceso renombrado y movimiento completado");

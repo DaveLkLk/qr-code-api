@@ -1,5 +1,112 @@
-@import url('libs/reset.css');
-
+html:has(body.certificado){
+    height: auto !important;
+}
+body.certificado{
+    overflow: auto !important;
+    display: block !important;
+    padding: 1rem;
+    background: white !important;
+}
 .container_certificado{
-    
+    display: grid;
+    gap: .5rem;
+}
+.container_certificado .certificado_title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container_certificado .certificado_entidad{
+    display: grid;
+    gap: .5rem;
+    text-align: center;
+    --icon-clr:#6b6b6b;
+}
+.container_certificado .certificado_entidad .certificado_entidad-nombre{
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #000000;
+    font-family: "Rubik", system-ui;
+}
+.container_certificado .certificado_entidad .certificado_entidad-descripcion{
+    font-size: 1.2rem;
+    color: #7c7c7c;
+    font-family: "Rubik", system-ui;
+}
+.container_certificado .certificado_entidad .certificado_entidad-evento{
+    margin: 1.5rem 0 0;
+    font-size: 1.3rem;
+    color: #000000;
+    font-family: "Rubik", system-ui;
+}
+
+.container_certificado .certificado_entidad .certificado_entidad-lugar-fecha{
+    margin: 1rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.container_certificado .certificado_entidad .certificado_fecha,
+.container_certificado .certificado_entidad .certificado_lugar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+    color: var(--icon-clr);
+}
+.container_certificado .certificado_entidad .certificado_entidad-escuela{
+    font-size: 1rem;
+    color: var(--icon-clr);
+    font-family: "Rubik", system-ui;
+}
+
+/* usuario */
+.container_certificado .certificado_usuario{
+    margin: 2rem auto;
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+}
+.container_certificado .certificado_usuario .certificado_usuario-prev{
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #000000;
+}
+.container_certificado .certificado_usuario .certificado_usuario-nombre{
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #000000;
+}
+
+.container_certificado .certificado_digital{
+    padding: 1rem;
+}
+.container_certificado .certificado_digital .certificado_image-pdf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: 0 0 5px #c5c5c5;
+}
+
+.container_certificado .certificado_download{
+    margin: 2rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container_certificado .certificado_download a{
+    padding: 1.5rem 3rem;
+    color: white;
+    background: #0b50a9;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #c5c5c5;
+    text-align: center;
+}
+@media screen and (max-width: 768px){
+    .container_certificado .certificado_download a{
+        padding: .5rem 2rem;
+    }
 }

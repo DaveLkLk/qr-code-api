@@ -104,9 +104,9 @@ function CertificadoDigital(isRender, digital){
     if(!isRender) return null;
     div.classList.add('certificado_digital');
     div.innerHTML = `
-        <div class="certificado_digital-pdf">
-            <embed id="certificado-usuario-pdf" src="${digital.src}" type="application/pdf" width="100%" height="300px">
-        </div>
+        <picture class="certificado_image-pdf">
+            <img src="${digital.img}" alt="certificado-usuario" width="100%" height="100%">
+        </picture>
         <div class="certificado_download">
             <a href="${digital.src}" download="${digital.name}" rel>Descargar Certificado</a>
         </div>
@@ -118,11 +118,12 @@ export function TemplateCertificado(data){
     const div = document.createElement('div');
     div.classList.add('container_certificado');
     div.innerHTML = '';
-    // div.appendChild(CertificadoTitle(true));
-    // div.appendChild(CertificadoEntidad(true, data.entidad));
-    // div.appendChild(CertificadoUsuario(true, data.usuario));
+    div.appendChild(CertificadoTitle(true));
+    div.appendChild(CertificadoEntidad(true, data.entidad));
+    div.appendChild(CertificadoUsuario(true, data.usuario));
     // div.appendChild(CertificadoInfo(true, data.info));
     // div.appendChild(CertificadoObs(true, data.obs));
     div.appendChild(CertificadoDigital(true, data.digital));
     return div;
 }
+

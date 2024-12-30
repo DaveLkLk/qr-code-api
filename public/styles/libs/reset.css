@@ -29,7 +29,6 @@ button[type="button"]{
     align-items: center;
     justify-content: center;
 }
-
 .icon svg{
     fill: var(--icon-clr);
     width: var(--icon-size);
@@ -38,4 +37,9 @@ button[type="button"]{
     pointer-events: none;
     user-select: none;
     transition: all ease 300ms;
+}
+span{
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
 }

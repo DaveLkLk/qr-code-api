@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.2",
     "mssql": "11.0.1",
     "path": "^0.12.7",
+    "pdfjs-dist": "^4.9.155",
     "qrcode": "1.5.3",
     "xlsx": "0.18.5",
     "xlsx-style": "^0.8.13"

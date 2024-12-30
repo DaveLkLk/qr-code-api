@@ -42,11 +42,11 @@ router.get('/validar', (req, res)=>{
 
 
 // ENRUTADOR PARA EL USUARIO ADMINISTRADOR
-router.get('/home', (req, res)=>{
-    console.log('/home');
-    const HomePath = path.join(__dirname, '../', 'views', 'dashboard.html')
-    res.status(200).render('dashboard');
-});
+// router.get('/home', (req, res)=>{
+//     console.log('/home');
+//     const HomePath = path.join(__dirname, '../', 'views', 'dashboard.html')
+//     res.status(200).render('dashboard');
+// });
 
 
 // router.get('/dashboard', (req, res)=>{
