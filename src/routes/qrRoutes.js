@@ -11,6 +11,7 @@ router.get('/qr/generate', generateQR)
 // router.get('/qr/generate-with-limit', generateQRWithExpiry)
 router.get('/xlsx/read', async(req, res)=> CargarDataBD(req, res))
 router.get('/xlsx/generar', async(req, res)=> generarPlantilla(req, res))
+router.get('/xlsx/extrae', )
 // router.post('/validar', async(req, res)=> await ValidarCertificadoPDF(req, res)) // TEST
 // router.post('/rename', async(req, res)=> renamePDFTable(req, res))
 

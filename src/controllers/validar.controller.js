@@ -83,4 +83,8 @@ async function DataCertificado(req=Request, res=Response){
         console.error(error.message);
     }
 }
+// adicional
+async function ExtraeDataXLSX(req=Request, res=Response){
+    const {codename } = req.query
+}
 module.exports = { ValidarCertificadoPDF, DataCertificado}
