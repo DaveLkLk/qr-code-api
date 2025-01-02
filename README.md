@@ -10,6 +10,18 @@ npm install
 npm run dev
 ```
 
+- Crear el archivo de configuración
+```powershell
+DB_SERVER=SRVDESARROLLO
+DB_USER=
+DB_PASSWORD=
+DB_DATABASE=BD_Untels2
+CRYPTO_SECRET_KEY=
+CRYPTO_ALGORITMO=aes-256-ctr
+TOKEN_JWT=2024-nov-untels-otic-codigo-qr
+TOKEN_DURATION=1h
+DB_NAME_SEG=BDSeguridad
+```
 
 #### Generar plantilla excel a partir de un excel base
 
