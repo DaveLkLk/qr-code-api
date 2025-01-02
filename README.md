@@ -9,8 +9,14 @@ npm install
 ```javascript
 npm run dev
 ```
+- Crear el archivo de configuración:  **.env** en la raíz del proyecto
+```javacript
+touch .env
+```
+o crearlo desde la interfaz del editor de código en uso.
 
-- Crear el archivo de configuración
+- Establecer las siguientes variables de entorno:
+
 ```powershell
 DB_SERVER=SRVDESARROLLO
 DB_USER=
@@ -22,6 +28,8 @@ TOKEN_JWT=2024-nov-untels-otic-codigo-qr
 TOKEN_DURATION=1h
 DB_NAME_SEG=BDSeguridad
 ```
+
+### 
 
 #### Generar plantilla excel a partir de un excel base
 
