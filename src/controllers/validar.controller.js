@@ -43,43 +43,17 @@ async function ValidarCertificadoPDF(req, res=Response){
             console.error('Error, no se encontro el certificado en la siguiente ruta: '+fileDirDestino);
             return res.status(404).json({msg: `No se encontró el certificado en la carpeta destino`, path: null, status: false})
         }
-        console.log(path_certificado);
+        // console.log(path_certificado);
         const nameFile = path.basename(`${path_certificado}.pdf`);
-        console.log(nameFile);
+        // console.log(nameFile);
         const fullPath = path.join(fileDirDestino, nameFile);
         if(!fs.existsSync(fullPath)){
             return res.status(404).json({msg: 'El archivo del certificado no se encontró en el servidor.'});
         }
+        console.log('Se envia el PDF CERTIFICADO encontrado');
         res.setHeader('Content-Type', 'application/pdf');
         const fileStream = fs.createReadStream(fullPath)
         fileStream.pipe(res)
-        // res.status(200).json({
-        //     status: true,
-        //     data: {
-        //         usuario: {
-        //             ✅nombre: `${ap_paterno} ${ap_materno} ${nombres}`
-        //         },
-        //         entidad: {
-        //             evento: '', 
-        //             certificadoFecha: '', 
-        //             certificadoLugar: '', 
-        //             area: ''
-        //         },
-        //         info: {
-        //             ✅codigo: codigo,
-        //             fechaEmision: ''
-        //         },
-        //         obs: {
-        //             descripcion: ''
-        //         },
-        //         digital: {
-        //             ✅src: fullPath,
-        //             ✅type: 'application/pdf',
-        //             ✅name: `C-${ap_paterno} ${ap_materno} ${nombres}`
-        //         }
-        //     },
-        //     title: `Certificado-${ap_paterno} ${ap_materno} ${nombres}`
-        // });
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({ 
@@ -91,7 +65,7 @@ async function ValidarCertificadoPDF(req, res=Response){
     }
 }
 async function DataCertificado(req=Request, res=Response){
-    const { codigo} = req.body
+    const { codigo } = req.body
     try {
         const pool = (await getConnection()).pool;
         const result = await pool.request()
@@ -99,7 +73,7 @@ async function DataCertificado(req=Request, res=Response){
             .execute(QUERY.sp_getDatallePersona)
         if(result.recordset.length === 0){
             return res.status(404).json({
-                msg: 'No se encontró datos para este certificado con el código de verificación.', 
+                msg: 'No se encontró datos para este certificado con el código de verificación.',
                 path: null,
                 status: false
             });

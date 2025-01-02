@@ -6,8 +6,8 @@ const qrRoutes = require('./qrRoutes.js');
 
 const router = Router()
 
-router.use('/', viewsRoutes)
-router.use('/captcha', captchaRoutes)
+router.use('/', viewsRoutes) // rutas frontend
+// router.use('/captcha', captchaRoutes) // en desuso
 router.use('/certificado', certificadoRoutes)
 router.use('/api', qrRoutes)
 

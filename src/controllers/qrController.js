@@ -3,21 +3,27 @@ const QRCode = require('qrcode')
 const generateQR = async (req, res) => {
     try {
         const { text, format = 'svg' } = req.query;
+        console.log(text);
+        console.log(format);
         if (!text) {
             return res.status(400).send('Text parameter is required');
         }
-
         let qrCode;
         if (format === 'svg') {
             qrCode = await QRCode.toString(text, { type: 'svg' });
+            console.log(qrCode);
             res.type('image/svg+xml')
             res.send(qrCode)
-        } else {
-            qrCode = await QRCode.toDataURL(text);
         }
-
-        res.type(format === 'svg' ? 'image/svg+xml' : 'application/json');
-        res.send(qrCode);
+        else if (format === 'png') {
+            qrCode = await QRCode.toDataURL(text);
+            console.log(qrCode);
+            res.type('application/json');
+            res.send({ qrCode });
+        }
+         else {
+            return res.status(400).send('Invalid format');
+        }
     } catch (error) {
         res.status(500).send('Error generating QR code');
     }

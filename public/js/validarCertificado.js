@@ -89,8 +89,9 @@ form.addEventListener('submit', async(e) => {
     const datos = await postDataCertificado(codigoVerifValue)
     console.log(datos);
     const fecha = (str)=> new Date(str).toISOString().split('T')[0];
+    const anio = new Date().getFullYear().toLocaleString();
     const data = {
-        digital: { src: response.src, name: 'certificado_2024', img: imageSRC},
+        digital: { src: response.src, name: `certificado_${anio}`, img: imageSRC},
         entidad: {evento: datos.data.evento, certificadoFecha: fecha(datos.data.fecha_evento), certificadoLugar: datos.data.lugar, area: datos.data.owner, certificadoFechaDos: fecha(datos.data.fecha_dos)},
         usuario: {nombre: `${datos.data.ap_paterno} ${datos.data.ap_materno} ${datos.data.nombres}`},
     }
@@ -98,11 +99,3 @@ form.addEventListener('submit', async(e) => {
     const divCertificado = TemplateCertificado(data)
     document.body.innerHTML = divCertificado.outerHTML;
 })
-// data: {
-    //        
-    //         digital: {
-    //             ✅src: fullPath,
-    //             ✅type: 'application/pdf',
-    //             ✅name: `C-${ap_paterno} ${ap_materno} ${nombres}`
-    //         }
-    //     },
