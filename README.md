@@ -1,6 +1,14 @@
 ## API QR CERTIFICADO
 
-#### Get 404
+- Instalar dependencias
+```javascript
+npm install
+```
+
+- Ejecutar el proyecto en local
+```javascript
+npm run dev
+```
 
 
 #### Generar plantilla excel a partir de un excel base
