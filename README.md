@@ -1,5 +1,8 @@
 ## API QR CERTIFICADO
 
+#### Get 404
+
+
 #### Generar plantilla excel a partir de un excel base
 
 ```http
@@ -21,7 +24,7 @@
 ```
 
 | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| -------- | ------- | --------------- |
 | codigo   | string | codigo de verificación |
 
 #### Obtener Detalle de persona Certificado
@@ -30,8 +33,8 @@
   POST /certificado/validar-data
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Parameter | Type     | Description      |
+| -------- | ------- | --------------- |
 | codigo   | string | codigo de verificación |
 
 
@@ -40,8 +43,7 @@
 ```http
   GET /api/qr/generate?text=${text}&format=${format}`
 ```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Parameter | Type   | Description   |
+| -------- | ------- | --------------- |
 | text   | string | texto a generar QR |
 | format   | string | svg - png |
-
