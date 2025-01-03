@@ -72,7 +72,7 @@ async function showFirstPage(pdfSrc) {
 form.addEventListener('submit', async(e) => {
     e.preventDefault();
     const codigoVerifValue = codigoVerificacion.value;
-    console.log(codigoVerifValue);
+    // console.log(codigoVerifValue);
     if (!codigoVerifValue) {
         alert('Por favor, complete los campos requeridos.')
         return;
@@ -87,7 +87,6 @@ form.addEventListener('submit', async(e) => {
     }
     const imageSRC = await showFirstPage(response.src)
     const datos = await postDataCertificado(codigoVerifValue)
-    console.log(datos);
     const fecha = (str)=> new Date(str).toISOString().split('T')[0];
     const anio = new Date().getFullYear().toLocaleString();
     const data = {
