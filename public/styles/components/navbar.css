@@ -88,6 +88,11 @@ body{
     background: var(--navbar-clr-link-hover);
     width: 100%;
 }
+.navbar_lista .navbar_ul .navbar_link:has(svg){
+    --icon-size: 15px;
+    --icon-clr: var(--navbar-clr-link);
+    gap: .4rem;
+}
 
 @keyframes fondo {
     0%{
