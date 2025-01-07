@@ -2,6 +2,7 @@
 @import url('./libs/alert.css');
 @import url('./components/navbar.css');
 @import url('./components/footer.css');
+@import url('./components/loader.css');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root{

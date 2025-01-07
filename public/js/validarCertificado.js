@@ -1,4 +1,5 @@
 import { AlertModel } from '../libs/alert.js'
+import { Loader } from './components/loader.js';
 import { TemplateCertificado } from './template/certificado.js';
 const form = document.querySelector('form#form-validacion-certificado');
 const codigoVerificacion = document.querySelector('input#codigo-verificacion')
@@ -71,30 +72,39 @@ async function showFirstPage(pdfSrc) {
 }
 form.addEventListener('submit', async(e) => {
     e.preventDefault();
-    const codigoVerifValue = codigoVerificacion.value;
-    // console.log(codigoVerifValue);
-    if (!codigoVerifValue) {
-        alert('Por favor, complete los campos requeridos.')
-        return;
+    const loader = Loader('Obteniendo certificado...');
+    document.body.appendChild(loader)
+    try {
+        const codigoVerifValue = codigoVerificacion.value;
+        // console.log(codigoVerifValue);
+        if (!codigoVerifValue) {
+            alert('Por favor, complete los campos requeridos.')
+            return;
+        }
+        const response = await validarCertificado(codigoVerifValue)
+        if(!response.status){
+            Alert.description = response.msg;
+            Alert.classname = Alert.tipoClase.INFO;
+            Alert.temporal = true;
+            Alert.showAlert();
+            return
+        }
+        const imageSRC = await showFirstPage(response.src)
+        const datos = await postDataCertificado(codigoVerifValue)
+        const fecha = (str)=> new Date(str).toISOString().split('T')[0];
+        const anio = new Date().getFullYear().toLocaleString();
+        const data = {
+            digital: { src: response.src, name: `certificado_${anio}`, img: imageSRC},
+            entidad: {evento: datos.data.evento, certificadoFecha: fecha(datos.data.fecha_evento), certificadoLugar: datos.data.lugar, area: datos.data.owner, certificadoFechaDos: fecha(datos.data.fecha_dos)},
+            usuario: {nombre: `${datos.data.ap_paterno} ${datos.data.ap_materno} ${datos.data.nombres}`},
+        }
+        document.body.classList.add('certificado')
+        const divCertificado = TemplateCertificado(data)
+        document.body.innerHTML = divCertificado.outerHTML;
+    } catch (error) {
+        console.error(error);
+        
+    }finally{
+        document.body.removeChild(loader)
     }
-    const response = await validarCertificado(codigoVerifValue)
-    if(!response.status){
-        Alert.description = response.msg;
-        Alert.classname = Alert.tipoClase.INFO;
-        Alert.temporal = true;
-        Alert.showAlert();
-        return
-    }
-    const imageSRC = await showFirstPage(response.src)
-    const datos = await postDataCertificado(codigoVerifValue)
-    const fecha = (str)=> new Date(str).toISOString().split('T')[0];
-    const anio = new Date().getFullYear().toLocaleString();
-    const data = {
-        digital: { src: response.src, name: `certificado_${anio}`, img: imageSRC},
-        entidad: {evento: datos.data.evento, certificadoFecha: fecha(datos.data.fecha_evento), certificadoLugar: datos.data.lugar, area: datos.data.owner, certificadoFechaDos: fecha(datos.data.fecha_dos)},
-        usuario: {nombre: `${datos.data.ap_paterno} ${datos.data.ap_materno} ${datos.data.nombres}`},
-    }
-    document.body.classList.add('certificado')
-    const divCertificado = TemplateCertificado(data)
-    document.body.innerHTML = divCertificado.outerHTML;
 })

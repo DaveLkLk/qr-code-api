@@ -48,7 +48,7 @@ async function ValidarCertificadoPDF(req, res=Response){
         // console.log(nameFile);
         const fullPath = path.join(fileDirDestino, nameFile);
         if(!fs.existsSync(fullPath)){
-            return res.status(404).json({msg: 'El archivo del certificado no se encontró en el servidor.'});
+            return res.status(404).json({msg: 'El archivo del certificado no se encontró.'});
         }
         console.log('Se envia el PDF CERTIFICADO encontrado');
         res.setHeader('Content-Type', 'application/pdf');
