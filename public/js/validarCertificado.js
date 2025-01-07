@@ -21,9 +21,11 @@ async function validarCertificado(codigo){
             console.error(res.msg);
             return {status: false, msg: res.msg, src: null}
         }
-        const pdf_blob = await response.blob();
-        const pdfURL = URL.createObjectURL(pdf_blob);
-        return {status: true, msg: '', src: pdfURL};
+        else{
+            const pdf_blob = await response.blob();
+            const pdfURL = URL.createObjectURL(pdf_blob);
+            return {status: true, msg: '', src: pdfURL};
+        }
     }
     catch (err){
         console.error(err);
