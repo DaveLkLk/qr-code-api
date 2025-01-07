@@ -34,26 +34,28 @@ async function ValidarCertificadoPDF(req, res=Response){
                 status: false
             });
         }
-        const {path_certificado, cargo, fecha_carga} = result.recordset[0];
-        const fechaCarga = new Date(fecha_carga).toISOString().split('T')[0];
-        const [year, mes] = fechaCarga.split('-')
-        const nameMes = obtenerNombreMes(parseInt(mes))
-        const fileDirDestino = path.join(__dirname, `../certificados/${year}/${nameMes}`);
-        if(!fs.existsSync(fileDirDestino)){
-            console.error('Error, no se encontro el certificado en la siguiente ruta: '+fileDirDestino);
-            return res.status(404).json({msg: `No se encontró el certificado en la carpeta destino`, path: null, status: false})
+        else{
+            const {path_certificado, cargo, fecha_carga} = result.recordset[0];
+            const fechaCarga = new Date(fecha_carga).toISOString().split('T')[0];
+            const [year, mes] = fechaCarga.split('-')
+            const nameMes = obtenerNombreMes(parseInt(mes))
+            const fileDirDestino = path.join(__dirname, `../certificados/${year}/${nameMes}`);
+            if(!fs.existsSync(fileDirDestino)){
+                console.error('Error, no se encontro el certificado en la siguiente ruta: '+fileDirDestino);
+                res.setHeader('Content-Type', 'application/json');
+                return res.status(404).json({msg: `No se encontró el certificado en la carpeta destino`, path: null, status: false})
+            }
+            // console.log(path_certificado);
+            const nameFile = path.basename(`${path_certificado}.pdf`);
+            // console.log(nameFile);
+            const fullPath = path.join(fileDirDestino, nameFile);
+            if(!fs.existsSync(fullPath)){
+                return res.status(404).json({msg: 'El archivo del certificado no se encontró.'});
+            }
+            res.setHeader('Content-Type', 'application/pdf');
+            const fileStream = fs.createReadStream(fullPath)
+            fileStream.pipe(res)
         }
-        // console.log(path_certificado);
-        const nameFile = path.basename(`${path_certificado}.pdf`);
-        // console.log(nameFile);
-        const fullPath = path.join(fileDirDestino, nameFile);
-        if(!fs.existsSync(fullPath)){
-            return res.status(404).json({msg: 'El archivo del certificado no se encontró.'});
-        }
-        console.log('Se envia el PDF CERTIFICADO encontrado');
-        res.setHeader('Content-Type', 'application/pdf');
-        const fileStream = fs.createReadStream(fullPath)
-        fileStream.pipe(res)
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({ 

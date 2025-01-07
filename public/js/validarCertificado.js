@@ -44,14 +44,14 @@ async function postDataCertificado(codigo){
         if(!response.ok) {
             const res = await response.json();
             console.error(res.msg);
-            return {status: false, msg: res.msg, src: null}
+            return { status: false, msg: res.msg, src: null }
         }
         const data = await response.json();
         return {status: true, msg: '', data};
     }
     catch (err){
         console.error(err);
-        return {status: false, msg: err.message, data: null}
+        return {status: false, msg: err.message, data: null };
     }
 }
 
@@ -107,6 +107,8 @@ form.addEventListener('submit', async(e) => {
         console.error(error);
         
     }finally{
-        document.body.removeChild(loader)
+        if (document.body.contains(loader)) {
+            document.body.removeChild(loader);
+        }
     }
 })
