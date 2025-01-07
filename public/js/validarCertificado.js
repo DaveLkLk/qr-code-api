@@ -19,7 +19,7 @@ async function validarCertificado(codigo){
         if(!response.ok) {
             const res = await response.json();
             console.error(res.msg);
-            return {status: false, msg: res.msg, src: null}
+            return {status: false, msg: 'No se encontró un certificado para este código de verificación', src: null}
         }
         else{
             const pdf_blob = await response.blob();
