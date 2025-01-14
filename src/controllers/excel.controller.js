@@ -71,11 +71,10 @@ async function ObtenerIdTipoParticipacionToExcel(isList, arr){
         const sql = (await getConnection()).sql;
         if(!isList){
             const participacion = await pool.request()
-                    .input('cadenaParticipaciones', sql.NVarChar, arr.TIPO_PARTICIPACION)
+                    .input('participacion', sql.NVarChar, arr.TIPO_PARTICIPACION)
                     .execute(QUERY.sp_getParticipacion)
             if(participacion.recordset.length > 0){
-                const newArr = participacion.recordset.flat()
-                return [...new Set(newArr.map(p => p.id))];
+                return participacion.recordset[0]
             }else{
                 return null;
             }
@@ -83,10 +82,10 @@ async function ObtenerIdTipoParticipacionToExcel(isList, arr){
         else{
             const newSet = await Promise.all(arr.map(async (row) => {
                 const ptcn = await pool.request()
-                    .input('cadenaParticipaciones', sql.NVarChar, row.TIPO_PARTICIPACION)
+                    .input('participacion', sql.NVarChar, row.TIPO_PARTICIPACION)
                     .execute(QUERY.sp_getParticipacion)
                 if(ptcn.recordset.length > 0){
-                    return ptcn.recordset
+                    return ptcn.recordset[0]
                 }else{
                     return null;
                 }
@@ -207,13 +206,11 @@ async function CargarDataBD(_, res){
                 if(idTipoDocumento === '001'){
                     newDNI = String(i.NUMERO_DOCUMENTO).padStart(8, '0')
                 }
-                // CREAR UN TYPE TABLE PARA OPTIMIZAR EL GUARDADO EN LA BD
-                const tableParticipacion = new sql.Table();
-                tableParticipacion.columns.add('participacion_id', sql.Int);
-                idParticipacion.forEach(id => {
-                    tableParticipacion.rows.add(id)
-                })
+                // prueba
+                // return {idParticipacion, strArea, idArea}
+                // return {dni: newDNI, mat: i.APELLIDO_MATERNO, pat: i.APELLIDO_PATERNO}
                 // EXEC
+                // console.log(idParticipacion.id);
                 const dbResult = await pool.request()
                     .input('ap_paterno', sql.NVarChar, i.APELLIDO_PATERNO)
                     .input('ap_materno', sql.NVarChar, i.APELLIDO_MATERNO)
@@ -223,7 +220,7 @@ async function CargarDataBD(_, res){
                     .input('correo_institucional', sql.NVarChar, i.CORREO_INSTITUCIONAL)
                     .input('correo_personal', sql.NVarChar, i.CORREO_PERSONAL)
                     .input('evento_id', sql.Int, i.EVENTO_ID)
-                    .input('participaciones', tableParticipacion)
+                    .input('participacion_id', idParticipacion.id)
                     .input('estado_persona_id', sql.Int, idEstado)
                     .input('cargo_id', sql.Int, idCargo)
                     .input('oficina_id', sql.Int, idArea)
@@ -238,11 +235,12 @@ async function CargarDataBD(_, res){
             }
         }));
         // return res.json(result);
+        // console.log(result);
         // console.info('---------------------------------------------');
         // console.info('Tabla personas:');
         // console.info('Filas insertadas: '+result.length);
         // console.info('---------------------------------------------');
-        console.log(result.recordset); 
+        console.log(result.forEach((i, acc) => console.log(acc+ ' - '+i.recordset[0].mensaje)));
         return res.status(200).json({success: true, data: `Se insertaron ${result.length} filas.`, msg: ''})
     } catch (error) {
         console.error('---------------------------------------------');
