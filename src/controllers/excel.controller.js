@@ -6,7 +6,7 @@ const { QUERY } = require('../db/query.js');
 
 function READ_EXCEL(){
     let options = {
-        filename: 'U_PLANTILLA_CERTIFICADO_QR1',
+        filename: 'INDUCCION_DOCENTE_QR1',
         iniciarFila: 0,
         hoja1: true,
     }
@@ -101,6 +101,7 @@ async function ObtenerIdTipoCargoToExcel(isList, arr){
     try {
         const pool = (await getConnection()).pool;
         if(!isList){
+            const parseCargo = arr
             // SETEO DE INVITADA -> INVITADO
             const area = await pool.request()
                     .input('nombre', arr)
@@ -110,7 +111,7 @@ async function ObtenerIdTipoCargoToExcel(isList, arr){
         else{
             const newSet = await Promise.all(arr.map(async(row) => {
                 const area = await pool.request()
-                    .input('nombre', cargo)
+                    .input('nombre', row.TIPO_CARGO)
                     .execute(QUERY.sp_getTipoCargo)
                 return area.recordset[0].id
             }));
@@ -121,7 +122,6 @@ async function ObtenerIdTipoCargoToExcel(isList, arr){
         return null
     }
 }
-// este ya esta
 async function ObtenerIdTipoDocumentoToExcel(isList, arr){
     try {
         const pool = (await getConnection()).pool;
@@ -154,7 +154,6 @@ async function ObtenerIdTipoDocumentoToExcel(isList, arr){
         return null
     }
 }
-// este ya esta
 async function ObtenerIdEstadoPersonaToExcel(isList, arr){
     let ESTADO_DEFAULT = 'EMITIDO'
     let ESTADO_DEFAULT_ID = 1
@@ -182,6 +181,33 @@ async function ObtenerIdEstadoPersonaToExcel(isList, arr){
         return null
     }
 }
+// FORMATEAR
+function formatearCargo(cargo){
+    if(cargo.toUpperCase().includes('DOCENTE INVITADO') || cargo.toUpperCase().includes('DOCENTE INVIT')) {
+        return 'DOCENTE INVITADO';
+    }
+    if(cargo.toUpperCase().includes('VICERRECTORA') || cargo.toUpperCase().includes('VICERRECTOR') || cargo.toUpperCase().includes('VICERECTOR')) {
+        return 'VICERRECTOR(A)';
+    }
+    if(cargo.toUpperCase().includes('RECTOR') || cargo.toUpperCase().includes('RECTORA')) {
+        return 'RECTOR(A)';
+    }
+    else{
+        return cargo.toUpperCase().trim();
+    }
+}
+function formatearTematica(tematica) {
+    const coincidencias = tematica.match(/[₋\-\+_]/g);
+  if (!coincidencias || coincidencias.length < 2) {
+    return tematica.trim();
+  }
+  return tematica
+    .replace(/[₋\+\_]/g, '-')
+    .replace(/(?<!^)[\s\r\n]*-\s*/g, '\n- ')
+    .replace(/^\s*-\s*/g, '- ')
+    .trim();
+}
+
 // -----------------------
 async function CargarDataBD(_, res){
     try {
@@ -192,7 +218,7 @@ async function CargarDataBD(_, res){
         // Iterar Filas
         const result = await Promise.all(dataExcel.map(async(i) => {
             try {
-                let cargo = String(i.CARGO).trim().toUpperCase().includes('DOCENTE INVIT') ? 'DOCENTE INVITADO' : i.CARGO;
+                let cargo = formatearCargo(i.CARGO);
                 let cargoPath = cargo.toString().trim().toUpperCase().replace(/ /g, '_');
                 let idEstado = await ObtenerIdEstadoPersonaToExcel(false, i)
                 let idCargo = await ObtenerIdTipoCargoToExcel(false, cargo)
@@ -200,14 +226,37 @@ async function CargarDataBD(_, res){
                 let idTipoDocumento = await ObtenerIdTipoDocumentoToExcel(false, i)
                 let idArea = await ObtenerIdAreaToExcel(false, i)
                 let strArea = !idArea ? i.OFICINA : '';
-                let hash = GenerarHashCertificado(i.NUMERO_DOCUMENTO)
+                let hash = GenerarHashCertificado(i.NUMERO_DOCUMENTO);
+                let observaciones = i.OBSERVACIONES ? String(i.OBSERVACIONES).trim() : '';
+                let resolucion = i.RESOLUCION ? String(i.RESOLUCION).trim() : '';
+                let tematica = formatearTematica(i.TEMATICA);
+                let horas = i.HORAS ? Number(i.HORAS) : 0;
                 // VALIDAR QUE EL DNI SEA DE 8 DIGITOS
                 let newDNI = i.NUMERO_DOCUMENTO;
                 if(idTipoDocumento === '001'){
                     newDNI = String(i.NUMERO_DOCUMENTO).padStart(8, '0')
                 }
                 // prueba
-                // return {idParticipacion, strArea, idArea}
+                // return {
+                //     pat: i.APELLIDO_PATERNO,
+                //     mat: i.APELLIDO_MATERNO,
+                //     nombres: i.NOMBRES,
+                //     tipo_doc: idTipoDocumento,
+                //     num_doc: newDNI,
+                //     email_ins: i.CORREO_INSTITUCIONAL,
+                //     email_per: i.CORREO_PERSONAL,
+                //     participacion_id: idParticipacion.id,
+                //     estado_persona_id: idEstado,
+                //     cargo_id: idCargo,
+                //     oficina: idArea,
+                //     externo: strArea,
+                //     path_certificado: `${i.NUMERO_DOCUMENTO}-${hash}-${cargoPath}`,
+                //     codigo_hash: hash,
+                //     observaciones: observaciones,
+                //     tematica: tematica,
+                //     resolucion: resolucion,
+                //     horas: horas,
+                // }
                 // return {dni: newDNI, mat: i.APELLIDO_MATERNO, pat: i.APELLIDO_PATERNO}
                 // EXEC
                 // console.log(idParticipacion.id);
@@ -227,7 +276,10 @@ async function CargarDataBD(_, res){
                     .input('externo', sql.NVarChar, strArea)
                     .input('path_certificado', sql.NVarChar, `${i.NUMERO_DOCUMENTO}-${hash}-${cargoPath}`)
                     .input('codigo_hash', sql.NVarChar, hash)
-                    .input('observaciones', sql.NVarChar, '')
+                    .input('observaciones', sql.NVarChar, observaciones)
+                    .input('tematica', sql.NVarChar, tematica)
+                    .input('resolucion', sql.NVarChar, resolucion)
+                    .input('horas', sql.Int, horas)
                     .execute(QUERY.sp_crearPersona)
                 return dbResult
             } catch (error) {

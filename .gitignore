@@ -2,3 +2,5 @@ node_modules/
 /iisnode
 .env
 web.config
+src/certificados
+src/excel/masivo

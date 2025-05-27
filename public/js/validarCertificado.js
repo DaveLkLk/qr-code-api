@@ -97,9 +97,11 @@ form.addEventListener('submit', async(e) => {
         const anio = new Date().getFullYear().toLocaleString();
         const data = {
             digital: { src: response.src, name: `certificado_${anio}`, img: imageSRC},
-            entidad: {evento: datos.data.evento, certificadoFecha: fecha(datos.data.fecha_evento), certificadoLugar: datos.data.lugar, area: datos.data.owner, certificadoFechaDos: fecha(datos.data.fecha_dos)},
-            usuario: {nombre: `${datos.data.ap_paterno} ${datos.data.ap_materno} ${datos.data.nombres}`},
+            entidad: {evento: datos.data.evento, certificadoFecha: fecha(datos.data.fecha_evento), certificadoLugar: datos.data.lugar, area: datos.data.owner, certificadoFechaDos: fecha(datos.data.fecha_dos), resolucion: datos.data.resolucion},
+            usuario: {nombre: `${datos.data.ap_paterno} ${datos.data.ap_materno} ${datos.data.nombres}`, tematica: datos.data.tematica, horas: datos.data.horas},
         }
+        // console.log(datos);
+        // console.log(data);
         document.body.classList.add('certificado')
         const divCertificado = TemplateCertificado(data)
         document.body.innerHTML = divCertificado.outerHTML;
